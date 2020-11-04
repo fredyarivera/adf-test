@@ -12,7 +12,7 @@
 				"type": "AzureBlobFSLocation",
 				"fileName": "iris_demo_data.parquet",
 				"folderPath": {
-					"value": "int(@item().month)",
+					"value": "@item().month",
 					"type": "Expression"
 				},
 				"fileSystem": "path-test"
