@@ -11,6 +11,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "iris_demo_data.parquet",
+				"folderPath": "@activity('LookupMonth').output.value[0].month",
 				"fileSystem": "path-test"
 			},
 			"compressionCodec": "gzip"
