@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"folderPath": "11",
+				"folderPath": "@activity('LookupMonth').output",
 				"fileSystem": "path-test"
 			},
 			"columnDelimiter": ",",
