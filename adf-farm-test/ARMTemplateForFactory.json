@@ -381,7 +381,10 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"folderPath": "int(@item().month)",
+						"folderPath": {
+							"value": "int(@item().month)",
+							"type": "Expression"
+						},
 						"fileSystem": "path-test"
 					},
 					"columnDelimiter": ",",
@@ -460,7 +463,10 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": "iris_demo_data.parquet",
-						"folderPath": "int(@item().month)",
+						"folderPath": {
+							"value": "int(@item().month)",
+							"type": "Expression"
+						},
 						"fileSystem": "path-test"
 					},
 					"compressionCodec": "gzip"
