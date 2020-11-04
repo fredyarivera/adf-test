@@ -24,7 +24,8 @@
 					"dataset": {
 						"referenceName": "SQLdb_demo_data",
 						"type": "DatasetReference"
-					}
+					},
+					"firstRowOnly": false
 				}
 			},
 			{
@@ -41,7 +42,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('LookupMonth').output",
+						"value": "@activity('LookupMonth').output.value",
 						"type": "Expression"
 					},
 					"activities": [
