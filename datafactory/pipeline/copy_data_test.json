@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "select distinct month(collect_date) from dbo.iris_demo_data",
+						"sqlReaderQuery": "select distinct month(collect_date) month from dbo.iris_demo_data",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -30,11 +30,18 @@
 			{
 				"name": "ForEach1",
 				"type": "ForEach",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "LookupMonth",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@{activity('LookupExecDates')",
+						"value": "'@{activity('LookupMonth').output.firstRow.month}",
 						"type": "Expression"
 					},
 					"activities": [
@@ -53,6 +60,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "SELECT  [sepal_length_cm]\n      ,[sepal_width_cm]\n      ,[petal_length_cm]\n      ,[petal_width_cm]\n      ,[class]\n      ,[collect_date]\n  FROM [dbo].[iris_demo_data]\n  where month(collect_date) = '@{activity('LookupMonth').output.firstRow.month}",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
@@ -175,6 +186,10 @@
 							"typeProperties": {
 								"source": {
 									"type": "AzureSqlSource",
+									"sqlReaderQuery": {
+										"value": "SELECT  [sepal_length_cm]\n      ,[sepal_width_cm]\n      ,[petal_length_cm]\n      ,[petal_width_cm]\n      ,[class]\n      ,[collect_date]\n  FROM [dbo].[iris_demo_data]\n  where month(collect_date) = '@{activity('LookupMonth').output.firstRow.month}",
+										"type": "Expression"
+									},
 									"queryTimeout": "02:00:00",
 									"partitionOption": "None"
 								},
