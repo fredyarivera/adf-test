@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
-				"type": "Copy",
+				"name": "LookupMonth",
+				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "7.00:00:00",
@@ -17,233 +17,272 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select distinct month(collect_date) from dbo.iris_demo_data",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
-					"sink": {
-						"type": "ParquetSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings",
-							"copyBehavior": "FlattenHierarchy"
-						},
-						"formatSettings": {
-							"type": "ParquetWriteSettings"
-						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "sepal_length_cm",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
-								},
-								"sink": {
-									"name": "sepal_length_cm",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
-								}
-							},
-							{
-								"source": {
-									"name": "sepal_width_cm",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
-								},
-								"sink": {
-									"name": "sepal_width_cm",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
-								}
-							},
-							{
-								"source": {
-									"name": "petal_length_cm",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
-								},
-								"sink": {
-									"name": "petal_length_cm",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
-								}
-							},
-							{
-								"source": {
-									"name": "petal_width_cm",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
-								},
-								"sink": {
-									"name": "petal_width_cm",
-									"type": "Decimal",
-									"physicalType": "DECIMAL"
-								}
-							},
-							{
-								"source": {
-									"name": "class",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "class",
-									"type": "String",
-									"physicalType": "UTF8"
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
+					"dataset": {
 						"referenceName": "SQLdb_demo_data",
 						"type": "DatasetReference"
 					}
-				],
-				"outputs": [
-					{
-						"referenceName": "datasetparquet",
-						"type": "DatasetReference"
-					}
-				]
+				}
 			},
 			{
-				"name": "Copy data2",
-				"type": "Copy",
+				"name": "ForEach1",
+				"type": "ForEach",
 				"dependsOn": [],
-				"policy": {
-					"timeout": "7.00:00:00",
-					"retry": 0,
-					"retryIntervalInSeconds": 30,
-					"secureOutput": false,
-					"secureInput": false
-				},
 				"userProperties": [],
 				"typeProperties": {
-					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00",
-						"partitionOption": "None"
+					"items": {
+						"value": "@{activity('LookupExecDates')",
+						"type": "Expression"
 					},
-					"sink": {
-						"type": "DelimitedTextSink",
-						"storeSettings": {
-							"type": "AzureBlobFSWriteSettings"
+					"activities": [
+						{
+							"name": "Copy data2",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "sepal_length_cm",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 2,
+												"precision": 8
+											},
+											"sink": {
+												"name": "sepal_length_cm",
+												"type": "Decimal",
+												"physicalType": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"name": "sepal_width_cm",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 2,
+												"precision": 8
+											},
+											"sink": {
+												"name": "sepal_width_cm",
+												"type": "Decimal",
+												"physicalType": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"name": "petal_length_cm",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 2,
+												"precision": 8
+											},
+											"sink": {
+												"name": "petal_length_cm",
+												"type": "Decimal",
+												"physicalType": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"name": "petal_width_cm",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 2,
+												"precision": 8
+											},
+											"sink": {
+												"name": "petal_width_cm",
+												"type": "Decimal",
+												"physicalType": "Decimal"
+											}
+										},
+										{
+											"source": {
+												"name": "class",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "class",
+												"type": "String",
+												"physicalType": "String"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SQLdb_demo_data",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DelimitedText1",
+									"type": "DatasetReference"
+								}
+							]
 						},
-						"formatSettings": {
-							"type": "DelimitedTextWriteSettings",
-							"quoteAllText": true,
-							"fileExtension": ".txt"
+						{
+							"name": "Copy data1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "ParquetSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings",
+										"copyBehavior": "FlattenHierarchy"
+									},
+									"formatSettings": {
+										"type": "ParquetWriteSettings"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "sepal_length_cm",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 2,
+												"precision": 8
+											},
+											"sink": {
+												"name": "sepal_length_cm",
+												"type": "Decimal",
+												"physicalType": "DECIMAL"
+											}
+										},
+										{
+											"source": {
+												"name": "sepal_width_cm",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 2,
+												"precision": 8
+											},
+											"sink": {
+												"name": "sepal_width_cm",
+												"type": "Decimal",
+												"physicalType": "DECIMAL"
+											}
+										},
+										{
+											"source": {
+												"name": "petal_length_cm",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 2,
+												"precision": 8
+											},
+											"sink": {
+												"name": "petal_length_cm",
+												"type": "Decimal",
+												"physicalType": "DECIMAL"
+											}
+										},
+										{
+											"source": {
+												"name": "petal_width_cm",
+												"type": "Decimal",
+												"physicalType": "decimal",
+												"scale": 2,
+												"precision": 8
+											},
+											"sink": {
+												"name": "petal_width_cm",
+												"type": "Decimal",
+												"physicalType": "DECIMAL"
+											}
+										},
+										{
+											"source": {
+												"name": "class",
+												"type": "String",
+												"physicalType": "varchar"
+											},
+											"sink": {
+												"name": "class",
+												"type": "String",
+												"physicalType": "UTF8"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "SQLdb_demo_data",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "datasetparquet",
+									"type": "DatasetReference"
+								}
+							]
 						}
-					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"name": "sepal_length_cm",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
-								},
-								"sink": {
-									"name": "sepal_length_cm",
-									"type": "Decimal",
-									"physicalType": "Decimal"
-								}
-							},
-							{
-								"source": {
-									"name": "sepal_width_cm",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
-								},
-								"sink": {
-									"name": "sepal_width_cm",
-									"type": "Decimal",
-									"physicalType": "Decimal"
-								}
-							},
-							{
-								"source": {
-									"name": "petal_length_cm",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
-								},
-								"sink": {
-									"name": "petal_length_cm",
-									"type": "Decimal",
-									"physicalType": "Decimal"
-								}
-							},
-							{
-								"source": {
-									"name": "petal_width_cm",
-									"type": "Decimal",
-									"physicalType": "decimal",
-									"scale": 2,
-									"precision": 8
-								},
-								"sink": {
-									"name": "petal_width_cm",
-									"type": "Decimal",
-									"physicalType": "Decimal"
-								}
-							},
-							{
-								"source": {
-									"name": "class",
-									"type": "String",
-									"physicalType": "varchar"
-								},
-								"sink": {
-									"name": "class",
-									"type": "String",
-									"physicalType": "String"
-								}
-							}
-						],
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "SQLdb_demo_data",
-						"type": "DatasetReference"
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DelimitedText1",
-						"type": "DatasetReference"
-					}
-				]
+					]
+				}
 			}
 		],
 		"concurrency": 1,
