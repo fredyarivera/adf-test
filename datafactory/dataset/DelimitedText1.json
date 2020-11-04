@@ -12,7 +12,7 @@
 				"type": "AzureBlobFSLocation",
 				"fileName": "iris_demo_data.txt",
 				"folderPath": {
-					"value": "@concat('land/', '@item().month')",
+					"value": "'land/'@item().month",
 					"type": "Expression"
 				},
 				"fileSystem": "path-test"
