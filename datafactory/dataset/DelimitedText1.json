@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "iris_demo_data.txt",
 				"folderPath": {
 					"value": "@item().month",
 					"type": "Expression"
