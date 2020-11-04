@@ -447,7 +447,7 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "iris_demo_data",
+						"fileName": "iris_demo_data.parquet",
 						"fileSystem": "path-test"
 					},
 					"compressionCodec": "gzip"
