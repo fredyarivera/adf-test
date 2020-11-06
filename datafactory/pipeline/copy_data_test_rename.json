@@ -323,7 +323,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "datasetparquet",
+									"referenceName": "datasetparquet1",
 									"type": "DatasetReference"
 								}
 							]

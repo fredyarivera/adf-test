@@ -1,5 +1,5 @@
 {
-	"name": "datasetparquet",
+	"name": "datasetparquet1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureDataLakeStorage1",
