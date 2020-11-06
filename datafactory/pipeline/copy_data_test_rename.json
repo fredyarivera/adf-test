@@ -22,7 +22,7 @@
 						"partitionOption": "None"
 					},
 					"dataset": {
-						"referenceName": "SQLdb_demo_data",
+						"referenceName": "SQLdb_demo_data1",
 						"type": "DatasetReference"
 					},
 					"firstRowOnly": false
@@ -173,7 +173,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SQLdb_demo_data",
+									"referenceName": "SQLdb_demo_data1",
 									"type": "DatasetReference"
 								}
 							],
@@ -317,7 +317,7 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "SQLdb_demo_data",
+									"referenceName": "SQLdb_demo_data1",
 									"type": "DatasetReference"
 								}
 							],

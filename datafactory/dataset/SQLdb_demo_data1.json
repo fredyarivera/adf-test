@@ -1,5 +1,5 @@
 {
-	"name": "SQLdb_demo_data",
+	"name": "SQLdb_demo_data1",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "AzureSqlDatabase1",
