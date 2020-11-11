@@ -35,6 +35,12 @@
 			{
 				"name": "class",
 				"type": "varchar"
+			},
+			{
+				"name": "collect_date",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
 			}
 		],
 		"typeProperties": {
