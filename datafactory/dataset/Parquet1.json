@@ -15,39 +15,6 @@
 			},
 			"compressionCodec": "gzip"
 		},
-		"schema": [
-			{
-				"name": "sepal_length_cm",
-				"type": "DECIMAL",
-				"precision": 8,
-				"scale": 2
-			},
-			{
-				"name": "sepal_width_cm",
-				"type": "DECIMAL",
-				"precision": 8,
-				"scale": 2
-			},
-			{
-				"name": "petal_length_cm",
-				"type": "DECIMAL",
-				"precision": 8,
-				"scale": 2
-			},
-			{
-				"name": "petal_width_cm",
-				"type": "DECIMAL",
-				"precision": 8,
-				"scale": 2
-			},
-			{
-				"name": "class",
-				"type": "UTF8"
-			},
-			{
-				"name": "collect_date",
-				"type": "INT96"
-			}
-		]
+		"schema": []
 	}
 }
