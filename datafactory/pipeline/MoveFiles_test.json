@@ -25,12 +25,15 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataset": {
-						"referenceName": "Parquet1",
+						"referenceName": "BinaryDataSource_Folder",
 						"type": "DatasetReference"
 					},
 					"fieldList": [],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings"
+					},
+					"formatSettings": {
+						"type": "BinaryReadSettings"
 					}
 				}
 			},
