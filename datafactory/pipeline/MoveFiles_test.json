@@ -17,7 +17,14 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"fieldList": []
+					"dataset": {
+						"referenceName": "Parquet2",
+						"type": "DatasetReference"
+					},
+					"fieldList": [],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings"
+					}
 				}
 			},
 			{
@@ -60,6 +67,9 @@
 										"type": "AzureBlobFSReadSettings",
 										"recursive": true
 									},
+									"formatSettings": {
+										"type": "BinaryReadSettings"
+									},
 									"recursive": false
 								},
 								"sink": {
@@ -101,7 +111,7 @@
 											"type": "Expression"
 										},
 										"Directory": {
-											"value": "@pipeline().parameters.DestinationStore_Directory",
+											"value": "@item().name",
 											"type": "Expression"
 										},
 										"filename": {
