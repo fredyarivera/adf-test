@@ -232,13 +232,16 @@
 		],
 		"parameters": {
 			"SourceStore_Location": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "https://datalaketest999.blob.core.windows.net/path-test/"
 			},
 			"SourceStore_Directory": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "https://datalaketest999.blob.core.windows.net/path-test/"
 			},
 			"DestinationStore_Location": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "https://datalaketest999.blob.core.windows.net/path-test/land/"
 			},
 			"DestinationStore_Directory": {
 				"type": "String"
