@@ -279,7 +279,72 @@
 						}
 					},
 					"enableStaging": false,
-					"dataIntegrationUnits": 0
+					"dataIntegrationUnits": 0,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "sepal_length_cm",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "sepal_length_cm",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "sepal_width_cm",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "sepal_width_cm",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "petal_length_cm",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "petal_length_cm",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "petal_width_cm",
+									"type": "Decimal"
+								},
+								"sink": {
+									"name": "petal_width_cm",
+									"type": "Decimal"
+								}
+							},
+							{
+								"source": {
+									"name": "class",
+									"type": "String"
+								},
+								"sink": {
+									"name": "class",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "collect_date",
+									"type": "DateTime"
+								},
+								"sink": {
+									"name": "collect_date",
+									"type": "DateTime"
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
