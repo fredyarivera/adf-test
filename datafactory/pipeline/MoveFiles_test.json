@@ -30,7 +30,8 @@
 					},
 					"fieldList": [],
 					"storeSettings": {
-						"type": "AzureBlobFSReadSettings"
+						"type": "AzureBlobFSReadSettings",
+						"recursive": true
 					},
 					"formatSettings": {
 						"type": "BinaryReadSettings"
@@ -222,9 +223,6 @@
 						"referenceName": "dataflow1",
 						"type": "DataFlowReference"
 					},
-					"staging": {
-						"folderPath": "logs"
-					},
 					"compute": {
 						"coreCount": 8,
 						"computeType": "General"
@@ -236,7 +234,7 @@
 		"parameters": {
 			"SourceStore_Location": {
 				"type": "String",
-				"defaultValue": "https://datalaketest999.blob.core.windows.net/path-test/"
+				"defaultValue": "path-test"
 			},
 			"SourceStore_Directory": {
 				"type": "String",
@@ -244,10 +242,11 @@
 			},
 			"DestinationStore_Location": {
 				"type": "String",
-				"defaultValue": "https://datalaketest999.blob.core.windows.net/path-test/land/"
+				"defaultValue": "path-test"
 			},
 			"DestinationStore_Directory": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "land"
 			}
 		},
 		"annotations": []
