@@ -242,16 +242,19 @@
 		],
 		"parameters": {
 			"SourceStore_Location": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "path-test"
 			},
 			"SourceStore_Directory": {
 				"type": "String"
 			},
 			"DestinationStore_Location": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "path-test"
 			},
 			"DestinationStore_Directory": {
-				"type": "String"
+				"type": "String",
+				"defaultValue": "land"
 			}
 		},
 		"annotations": []
