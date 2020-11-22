@@ -179,7 +179,25 @@
 							"outputs": [
 								{
 									"referenceName": "datasetparquet1",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"Directory": {
+											"value": "@pipeline().parameters.Directory_output",
+											"type": "Expression"
+										},
+										"Month": {
+											"value": "@item().month",
+											"type": "Expression"
+										},
+										"Class": {
+											"value": "@item().class",
+											"type": "Expression"
+										},
+										"Container": {
+											"value": "@pipeline().parameters.Source_Container",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}

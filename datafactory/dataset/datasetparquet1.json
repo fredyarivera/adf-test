@@ -17,6 +17,10 @@
 			"Class": {
 				"type": "string",
 				"defaultValue": "@item.class"
+			},
+			"Container": {
+				"type": "string",
+				"defaultValue": "@pipeline().parameters.Source_Container"
 			}
 		},
 		"annotations": [],
@@ -33,7 +37,7 @@
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@pipeline().parameters.Container_source",
+					"value": "@dataset().Container",
 					"type": "Expression"
 				}
 			},
