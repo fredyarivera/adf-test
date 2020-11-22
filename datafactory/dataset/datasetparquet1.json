@@ -5,14 +5,37 @@
 			"referenceName": "AzureDataLakeStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"Directory": {
+				"type": "string",
+				"defaultValue": "@pipeline().parameters.Directory_output"
+			},
+			"Month": {
+				"type": "string",
+				"defaultValue": "@item().month"
+			},
+			"Class": {
+				"type": "string",
+				"defaultValue": "@item.class"
+			}
+		},
 		"annotations": [],
 		"type": "Parquet",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "iris_demo_data.parquet",
-				"folderPath": "land",
-				"fileSystem": "path-test/"
+				"fileName": {
+					"value": "@concat('iris_demo_data_',dataset().Class,dataset().Month,'.parquet')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@concat(dataset().Directory,'/' , dataset().Class, '/',dataset().Month)",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@pipeline().parameters.Container_source",
+					"type": "Expression"
+				}
 			},
 			"compressionCodec": "gzip"
 		},
