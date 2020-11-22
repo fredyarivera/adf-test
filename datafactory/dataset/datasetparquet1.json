@@ -7,20 +7,16 @@
 		},
 		"parameters": {
 			"Directory": {
-				"type": "string",
-				"defaultValue": "@pipeline().parameters.Directory_output"
+				"type": "string"
 			},
 			"Month": {
-				"type": "string",
-				"defaultValue": "@item().month"
+				"type": "string"
 			},
 			"Class": {
-				"type": "string",
-				"defaultValue": "@item.class"
+				"type": "string"
 			},
 			"Container": {
-				"type": "string",
-				"defaultValue": "@pipeline().parameters.Source_Container"
+				"type": "string"
 			}
 		},
 		"annotations": [],
