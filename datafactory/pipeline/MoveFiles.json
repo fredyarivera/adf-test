@@ -355,7 +355,13 @@
 				"outputs": [
 					{
 						"referenceName": "datasetparquet1",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"Directory": "@pipeline().parameters.Directory_output",
+							"Month": "@item().month",
+							"Class": "@item.class",
+							"Container": "@pipeline().parameters.Source_Container"
+						}
 					}
 				]
 			}
