@@ -120,17 +120,7 @@
 				"outputs": [
 					{
 						"referenceName": "datasetparquet2",
-						"type": "DatasetReference",
-						"parameters": {
-							"Directory": {
-								"value": "@pipeline().parameters.DestinationStore_Location",
-								"type": "Expression"
-							},
-							"Container": {
-								"value": "@pipeline().parameters.DestinationStore_Directory",
-								"type": "Expression"
-							}
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
