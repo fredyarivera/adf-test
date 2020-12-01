@@ -24,12 +24,9 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": {
-					"value": "@concat('iris_demo_data_',dataset().Class,dataset().Month,'.parquet')",
-					"type": "Expression"
-				},
+				"fileName": "iris_demo_data_parquet",
 				"folderPath": {
-					"value": "@concat(dataset().Directory,'/' , dataset().Class, '/',dataset().Month)",
+					"value": "@dataset().Directory",
 					"type": "Expression"
 				},
 				"fileSystem": {
