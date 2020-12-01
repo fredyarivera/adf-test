@@ -22,7 +22,7 @@
 				}
 			],
 			"transformations": [],
-			"script": "source(output(\n\t\tsepal_length_cm as decimal(8,2),\n\t\tsepal_width_cm as decimal(8,2),\n\t\tpetal_length_cm as decimal(8,2),\n\t\tpetal_width_cm as decimal(8,2),\n\t\tclass as string,\n\t\tcollect_date as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_COMMITTED',\n\tformat: 'table',\n\tpartitionBy('key',\n\t\t0,\n\t\tclass\n\t)) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\trowUrlColumn:'class',\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
+			"script": "source(output(\n\t\tID as integer,\n\t\tsepal_length_cm as decimal(8,2),\n\t\tsepal_width_cm as decimal(8,2),\n\t\tpetal_length_cm as decimal(8,2),\n\t\tpetal_width_cm as decimal(8,2),\n\t\tclass as string,\n\t\tcollect_date as timestamp\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\tisolationLevel: 'READ_COMMITTED',\n\tformat: 'table',\n\tpartitionBy('key',\n\t\t0,\n\t\tclass\n\t)) ~> source1\nsource1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tformat: 'parquet',\n\trowUrlColumn:'class',\n\ttruncate: true,\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1"
 		}
 	}
 }

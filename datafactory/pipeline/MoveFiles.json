@@ -285,6 +285,16 @@
 						"mappings": [
 							{
 								"source": {
+									"name": "ID",
+									"type": "Int32"
+								},
+								"sink": {
+									"name": "ID",
+									"type": "Int32"
+								}
+							},
+							{
+								"source": {
 									"name": "sepal_length_cm",
 									"type": "Decimal"
 								},
