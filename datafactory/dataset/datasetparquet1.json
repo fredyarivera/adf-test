@@ -12,9 +12,6 @@
 			"Month": {
 				"type": "string"
 			},
-			"Class": {
-				"type": "string"
-			},
 			"Container": {
 				"type": "string"
 			}
