@@ -19,14 +19,8 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": "iris_demo_data.parquet",
-				"folderPath": {
-					"value": "@dataset().Directory",
-					"type": "Expression"
-				},
-				"fileSystem": {
-					"value": "@dataset().Container",
-					"type": "Expression"
-				}
+				"folderPath": "land",
+				"fileSystem": "path-test"
 			},
 			"compressionCodec": "gzip"
 		},
