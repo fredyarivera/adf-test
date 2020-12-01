@@ -33,7 +33,7 @@
 						}
 					},
 					"enableStaging": false,
-					"dataIntegrationUnits": 0,
+					"dataIntegrationUnits": 3,
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
