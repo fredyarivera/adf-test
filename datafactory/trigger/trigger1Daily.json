@@ -1,0 +1,29 @@
+{
+	"name": "trigger1Daily",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "MoveFile",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"SourceStore_Location": "path-test",
+					"DestinationStore_Location": "path-test",
+					"DestinationStore_Directory": "land"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2020-12-03T21:28:00",
+				"timeZone": "Pacific Standard Time"
+			}
+		}
+	}
+}
