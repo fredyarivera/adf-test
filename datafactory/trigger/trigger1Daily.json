@@ -11,6 +11,7 @@
 				},
 				"parameters": {
 					"SourceStore_Location": "path-test",
+					"SourceStore_Directory": "land",
 					"DestinationStore_Location": "path-test",
 					"DestinationStore_Directory": "land"
 				}
