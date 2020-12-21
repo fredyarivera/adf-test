@@ -1,0 +1,227 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-farm-test"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/MoveFile')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "Move files from one folder to another folder",
+				"activities": [
+					{
+						"name": "CopyAFile_copy1",
+						"description": "Copy a file from the source store to the destination store.",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "AzureSqlSource",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None",
+								"recursive": false
+							},
+							"sink": {
+								"type": "ParquetSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings",
+									"copyBehavior": "FlattenHierarchy"
+								},
+								"formatSettings": {
+									"type": "ParquetWriteSettings"
+								}
+							},
+							"enableStaging": false,
+							"dataIntegrationUnits": 3,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "ID",
+											"type": "Int32"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int32"
+										}
+									},
+									{
+										"source": {
+											"name": "sepal_length_cm",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "sepal_length_cm",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "sepal_width_cm",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "sepal_width_cm",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "petal_length_cm",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "petal_length_cm",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "petal_width_cm",
+											"type": "Decimal"
+										},
+										"sink": {
+											"name": "petal_width_cm",
+											"type": "Decimal"
+										}
+									},
+									{
+										"source": {
+											"name": "class",
+											"type": "String"
+										},
+										"sink": {
+											"name": "class",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "collect_date",
+											"type": "DateTime"
+										},
+										"sink": {
+											"name": "collect_date",
+											"type": "DateTime"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "SQLdb_demo_data1",
+								"type": "DatasetReference"
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "datasetparquet2",
+								"type": "DatasetReference"
+							}
+						]
+					},
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "CopyAFile_copy1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/frrive@microsoft.com/DeltDemoIncr"
+						},
+						"linkedServiceName": {
+							"referenceName": "AzureDatabricks1",
+							"type": "LinkedServiceReference"
+						}
+					},
+					{
+						"name": "WebEmailSend",
+						"type": "WebActivity",
+						"dependsOn": [
+							{
+								"activity": "Notebook1",
+								"dependencyConditions": [
+									"Failed"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"url": "https://prod-10.centralus.logic.azure.com:443/workflows/7adde89a9e6b44c79957612bb5324ef5/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=r4U2b4E3v7b582vquoauEpedRXiWt3hoeT_FUejkEiY",
+							"method": "POST",
+							"headers": {
+								"Content-Type": "application/json"
+							},
+							"body": {
+								"DataFactoryName": "@{pipeline().DataFactory}",
+								"EmailTo": "fredyrivera@outlook.com",
+								"ErrorMessage": "Please check if everything is Ok!",
+								"PipelineName": "@{pipeline().Pipeline}",
+								"Subject": "Pipeline finished"
+							}
+						}
+					}
+				],
+				"parameters": {
+					"SourceStore_Location": {
+						"type": "String",
+						"defaultValue": "path-test"
+					},
+					"SourceStore_Directory": {
+						"type": "String"
+					},
+					"DestinationStore_Location": {
+						"type": "String",
+						"defaultValue": "path-test"
+					},
+					"DestinationStore_Directory": {
+						"type": "String",
+						"defaultValue": "land"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
+		}
+	]
+}
