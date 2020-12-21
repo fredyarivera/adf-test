@@ -222,7 +222,14 @@
 							"headers": {
 								"Content-Type": "application/json"
 							},
-							"body": "{“EmailTo”: “@{pipeline().parameters.EmailTo}”,”Subject”: “Please check @{pipeline().Pipeline}-pipeline”,”DataFactory”: “@{pipeline().DataFactory}”,”PipelineName”: ”ErrorMessage”: “Please check pipeline execution”}"
+							"body": {
+								"EmailTo": "@{pipeline().parameters.EmailTo}",
+								"Subject": "PIpeline @{pipeline().Pipeline} Finished",
+								"DataFactoryName": "@{pipeline().DataFactory}",
+								"PipelineName": "@{pipeline().Pipeline}",
+								"Activity": "Move file",
+								"ErrorMessage": "Please check results"
+							}
 						}
 					}
 				],
@@ -245,13 +252,6 @@
 					"EmailTo": {
 						"type": "string",
 						"defaultValue": "fredyrivera@outlook.com"
-					},
-					"Activity": {
-						"type": "string",
-						"defaultValue": "Move Files"
-					},
-					"ErrorMessage": {
-						"type": "string"
 					}
 				},
 				"annotations": []
