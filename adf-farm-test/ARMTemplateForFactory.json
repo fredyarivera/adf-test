@@ -224,10 +224,10 @@
 							},
 							"body": {
 								"DataFactoryName": "@{pipeline().DataFactory}",
-								"PipelineName": "@{pipeline().Pipeline}",
-								"Subject": "Pipeline finished",
+								"EmailTo": "fredyrivera@outlook.com",
 								"ErrorMessage": "Please check if everything is Ok!",
-								"EmailTo": "fredyrivera@outlook.com"
+								"PipelineName": "@{pipeline().Pipeline}",
+								"Subject": "Pipeline finished"
 							}
 						}
 					}
