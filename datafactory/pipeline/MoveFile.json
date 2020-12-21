@@ -152,7 +152,7 @@
 				}
 			},
 			{
-				"name": "Web1",
+				"name": "WebEmailSend",
 				"type": "WebActivity",
 				"dependsOn": [
 					{
@@ -169,7 +169,21 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://prod-10.centralus.logic.azure.com:443/workflows/7adde89a9e6b44c79957612bb5324ef5/triggers/manual/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=r4U2b4E3v7b582vquoauEpedRXiWt3hoeT_FUejkEiY",
+					"method": "POST",
+					"headers": {
+						"Content-Type": "application/json"
+					},
+					"body": {
+						"DataFactoryName": "@{pipeline().DataFactory}",
+						"PipelineName": "@{pipeline().Pipeline}",
+						"Subject": "Pipeline finished",
+						"ErrorMessage": "Everything is Ok!",
+						"EmailTo": "fredyrivera@outlook.com"
+					}
+				}
 			}
 		],
 		"parameters": {
