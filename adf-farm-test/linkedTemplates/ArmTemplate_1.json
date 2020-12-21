@@ -338,7 +338,7 @@
 							{
 								"activity": "Notebook1",
 								"dependencyConditions": [
-									"Succeeded"
+									"Completed"
 								]
 							}
 						],
