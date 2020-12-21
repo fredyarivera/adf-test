@@ -222,7 +222,7 @@
 							"headers": {
 								"Content-Type": "application/json"
 							},
-							"body": "{“EmailTo”: “@{pipeline().parameters.EmailTo}”,”Subject”: “Please check @{pipeline().Pipeline}-pipeline”,”DataFactory”: “@{pipeline().DataFactory}”,”PipelineName”: ”ErrorMessage”: “Please check pi`peline execution”}"
+							"body": "{“EmailTo”: “@{pipeline().parameters.EmailTo}”,”Subject”: “Please check @{pipeline().Pipeline}-pipeline”,”DataFactory”: “@{pipeline().DataFactory}”,”PipelineName”: ”ErrorMessage”: “Please check pipeline execution”}"
 						}
 					}
 				],
