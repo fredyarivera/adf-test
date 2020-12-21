@@ -176,13 +176,7 @@
 					"headers": {
 						"Content-Type": "application/json"
 					},
-					"body": {
-						"DataFactoryName": "@{pipeline().DataFactory}",
-						"EmailTo": "fredyrivera@outlook.com",
-						"ErrorMessage": "Please check if everything is Ok!",
-						"PipelineName": "@{pipeline().Pipeline}",
-						"Subject": "Pipeline finished"
-					}
+					"body": "{“EmailTo”: “@{pipeline().parameters.EmailTo}”,”Subject”: “An error has occured in the @{pipeline().Pipeline}-pipeline”,”DataFactoryName”: “@{pipeline().DataFactory}”,”PipelineName”: “@{pipeline().Pipeline}”,”Activity”: “@{pipeline().parameters.Activity}”,”ErrorMessage”: “@{pipeline().parameters.ErrorMessage}”}"
 				}
 			}
 		],
