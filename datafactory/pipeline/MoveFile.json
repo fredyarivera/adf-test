@@ -158,7 +158,7 @@
 					{
 						"activity": "Notebook1",
 						"dependencyConditions": [
-							"Failed"
+							"Completed"
 						]
 					}
 				],
@@ -177,7 +177,7 @@
 						"Content-Type": "application/json"
 					},
 					"body": {
-						"value": "{\n\"EmailTo\": \"@{pipeline().parameters.EmailTo}\",\n\"Subject\": \"Piepeline execution results:\",\n\"DataFactoryName\": \"@{pipeline().DataFactory}\",\n\"PipelineName\": \"@{pipeline().Pipeline}\",\n\"Activity\": \"Move file\",\n\"ErrorMessage\": \"Please, check the results!\"\n}",
+						"value": "{\n\"EmailTo\": \"@{pipeline().parameters.EmailTo}\",\n\"Subject\": \"Pipeline execution results:\",\n\"DataFactoryName\": \"@{pipeline().DataFactory}\",\n\"PipelineName\": \"@{pipeline().Pipeline}\",\n\"Activity\": \"Move file\",\n\"ErrorMessage\": \"Please, check the results!\"\n}",
 						"type": "Expression"
 					}
 				}
