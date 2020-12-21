@@ -223,7 +223,7 @@
 								"Content-Type": "application/json"
 							},
 							"body": {
-								"value": "{\"EmailTo\":\"+pipeline().parameters.EmailTo+\",\"Subject\":\"PIpeline @{pipeline().Pipeline} Finished\",\"DataFactoryName\":\"@{pipeline().DataFactory}\",\"PipelineName\":\"@{pipeline().Pipeline}\",\"Activity\":\"Move file\",\"ErrorMessage\":\"Please check results\"}",
+								"value": "{\"EmailTo\":\"@{pipeline().parameters.EmailTo}\",\"Subject\":\"PIpeline @{pipeline().Pipeline} Finished\",\"DataFactoryName\":\"@{pipeline().DataFactory}\",\"PipelineName\":\"@{pipeline().Pipeline}\",\"Activity\":\"Move file\",\"ErrorMessage\":\"Please check results\"}",
 								"type": "Expression"
 							}
 						}
