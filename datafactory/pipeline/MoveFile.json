@@ -180,7 +180,7 @@
 						"DataFactoryName": "@{pipeline().DataFactory}",
 						"PipelineName": "@{pipeline().Pipeline}",
 						"Subject": "Pipeline finished",
-						"ErrorMessage": "Everything is Ok!",
+						"ErrorMessage": "Please check if everything is Ok!",
 						"EmailTo": "fredyrivera@outlook.com"
 					}
 				}
