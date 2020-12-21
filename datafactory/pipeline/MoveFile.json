@@ -205,7 +205,7 @@
 			},
 			"EmailTo": {
 				"type": "string",
-				"defaultValue": "fredyrivera@outlook.com"
+				"defaultValue": "fredy.rivera@microsoft.com"
 			}
 		},
 		"annotations": []
