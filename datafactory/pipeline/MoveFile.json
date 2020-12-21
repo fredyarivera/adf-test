@@ -176,7 +176,7 @@
 					"headers": {
 						"Content-Type": "application/json"
 					},
-					"body": "{“EmailTo”: “@{pipeline().parameters.EmailTo}”,”Subject”: “An error has occured in the @{pipeline().Pipeline}-pipeline”,”DataFactoryName”: “@{pipeline().DataFactory}”,”PipelineName”: “@{pipeline().Pipeline}”,”Activity”: “@{pipeline().parameters.Activity}”,”ErrorMessage”: “@{pipeline().parameters.ErrorMessage}”}"
+					"body": "{“EmailTo”: “@{pipeline().parameters.EmailTo}”,”Subject”: “Please check @{pipeline().Pipeline}-pipeline”,”DataFactory”: “@{pipeline().DataFactory}”,”PipelineName”: ”ErrorMessage”: “Please check pi`peline execution”}"
 				}
 			}
 		],
@@ -199,6 +199,13 @@
 			"EmailTo": {
 				"type": "string",
 				"defaultValue": "fredyrivera@outlook.com"
+			},
+			"Activity": {
+				"type": "string",
+				"defaultValue": "Move Files"
+			},
+			"ErrorMessage": {
+				"type": "string"
 			}
 		},
 		"annotations": []
