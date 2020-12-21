@@ -195,6 +195,10 @@
 			"DestinationStore_Directory": {
 				"type": "String",
 				"defaultValue": "land"
+			},
+			"EmailTo": {
+				"type": "string",
+				"defaultValue": "fredyrivera@outlook.com"
 			}
 		},
 		"annotations": []
