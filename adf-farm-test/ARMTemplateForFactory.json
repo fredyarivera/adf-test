@@ -222,13 +222,7 @@
 							"headers": {
 								"Content-Type": "application/json"
 							},
-							"body": {
-								"DataFactoryName": "@{pipeline().DataFactory}",
-								"EmailTo": "fredyrivera@outlook.com",
-								"ErrorMessage": "Please check if everything is Ok!",
-								"PipelineName": "@{pipeline().Pipeline}",
-								"Subject": "Pipeline finished"
-							}
+							"body": "{“EmailTo”: “@{pipeline().parameters.EmailTo}”,”Subject”: “Please check @{pipeline().Pipeline}-pipeline”,”DataFactory”: “@{pipeline().DataFactory}”,”PipelineName”: ”ErrorMessage”: “Please check pi`peline execution”}"
 						}
 					}
 				],
@@ -247,6 +241,17 @@
 					"DestinationStore_Directory": {
 						"type": "String",
 						"defaultValue": "land"
+					},
+					"EmailTo": {
+						"type": "string",
+						"defaultValue": "fredyrivera@outlook.com"
+					},
+					"Activity": {
+						"type": "string",
+						"defaultValue": "Move Files"
+					},
+					"ErrorMessage": {
+						"type": "string"
 					}
 				},
 				"annotations": []
